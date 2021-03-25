@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Pizza Creator</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <style>
+
+body {
+background-color: powderblue;
+margin: 20px;
+font-size: larger;
+}
+
+
+h1   {color: blue;}
+h3   {color: purple;}
+p    {
+font-size: x-large;
+color: purple;}
+
+    </style>
+
+</head>
+<body>
+
+
+<h1> Pizza Creator</h1>
+
+<img src="ivan-torres-MQUqbmszGGM-unsplash.jpg" id="pizzaImage" style="max-width:50%;height:auto; float: right; " >
+
+<form action="#" th:action="@{/pizzacreator}" th:object="${pizzaCreatorModel}" method="post">
+
+    <!--Do pizza-->
+    <p> Name der Pizza: <input type="text" th:field="${pizzaCreatorModel.nameofPizza}" required/></p>
+
+    <!--Drop Down liste-->
+
+
+    <h3>Grössen</h3>
+    <div id="dropDownList"  STYLE="margin: 10px;">
+        <select th:field="${pizzaCreatorModel.size}">
+            <option th:value="250" th:text="250mm"></option>
+            <option th:value="320" th:text="320mm"></option>
+        </select>
+    </div>
+
+    <!--Radio Buttons-->
+    <div class="custom-control custom-radio custom-control-inline" STYLE="margin: 10px;">
+        <input type="radio" id="option1" name="250mm" class="custom-control-input" value="1" th:field="${pizzaCreatorModel.size}">
+        <label class="custom-control-label" for="option1">250mm</label>
+
+        <input type="radio" id="option2" name="320mmm" class="custom-control-input" value="1" th:field="${pizzaCreatorModel.size}">
+        <label class="custom-control-label" for="option1">320mmm</label>
+    </div>
+
+
+    <h3>Zutaten</h3>
+    <div th:each="item : ${ingredients}" STYLE="margin: 10px;">
+        <input type="checkbox" th:field="*{checkedItemsIngrediants}" th:value="${item}" />
+        <label th:text="${item}">Zutaten</label>
+    </div>
+
+
+    <!--Do pizza-->
+    <p> Grundpreis der Pizza: <input type="number" disabled  STYLE="margin: 10px;" th:field="${pizzaCreatorModel.price}" required/></p>
+
+    <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
+
+
+
+
+
+</form>
+
+</body>
+</html>
