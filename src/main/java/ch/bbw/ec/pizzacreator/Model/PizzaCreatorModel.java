@@ -2,6 +2,12 @@ package ch.bbw.ec.pizzacreator.Model;
 
 import java.util.List;
 
+/**
+ * Klasse Model
+ * @Datum 29.03.2021
+ * @author Emanuel Constanti
+ */
+
 public class PizzaCreatorModel {
 
     private String nameofPizza;
